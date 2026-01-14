@@ -1,26 +1,76 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+/* 1. KONFIGURACJA WARIANTÓW I TEMATU (TAILWIND v4)
+  -------------------------------------------------------------------------
+  W Tailwindzie v4 konfigurację robimy bezpośrednio w CSS.
+*/
+@theme {
+  /* Definiujemy własne nazwy klas, których będziemy używać w projekcie (np. bg-ui-bg) */
+  --color-ui-bg: var(--ui-bg);
+  --color-ui-text: var(--ui-text);
+  --color-ui-border: var(--ui-border);
+  --color-brand-primary: var(--brand-primary);
+  --color-ui-secondary: var(--ui-secondary);
+  --color-ui-danger: var(--ui-danger);
+  
+  /* Zachowujemy fonty zdefiniowane przez Next.js */
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* 2. REJESTRACJA DARK MODE
+  -------------------------------------------------------------------------
+  Poniższa linia instruuje Tailwinda, by wariant 'dark:' aktywował się, 
+  gdy znajdzie klasę .dark na elemencie <html> (dodawaną przez next-themes).
+*/
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* 3. DEFINICJA PALETY KOLORÓW (VARIABLE TOKENS)
+  -------------------------------------------------------------------------
+  Używamy zmiennych CSS, aby łatwo zmieniać motyw w jednym miejscu.
+*/
+:root {
+  /* --- Tryb Jasny (Domyślny) --- */
+  --ui-bg: #ffffff;            /* Główne tło strony */
+  --ui-text: #0f172a;          /* Kolor tekstu (slate-900) */
+  --ui-border: #1b36cf;        /* Kolor ramek i linii (slate-200) */
+  --brand-primary: #2563eb;    /* Główny kolor akcentu (blue-600) */
+  --ui-secondary: #f1f5f9;     /* jasny szary (slate-100) */
+  --ui-secondary-text: #475569;
+  --ui-danger: #ef4444;        /* czerwony (red-500) */
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.dark {
+  /* --- Tryb Ciemny --- */
+  --ui-bg: #0f172a;            /* Tło: bardzo ciemny granat (slate-900) */
+  --ui-text: #f8fafc;          /* Tekst: niemal biały (slate-50) */
+  --ui-border: #cacfda;        /* Ramki: ciemniejszy granat (slate-800) */
+  --brand-primary: #3b82f6;    /* Akcent: jaśniejszy błękit dla kontrastu (blue-500) */
+  --ui-secondary: #1e293b;     /* ciemny szary (slate-800) */
+  --ui-secondary-text: #cbd5e1;
+  --ui-danger: #7f1d1d;        /* ciemny czerwony */
+}
+
+/* 4. STYLE BAZOWE (ELEMENTY HTML)
+  -------------------------------------------------------------------------
+  Aplikujemy podstawowe style do tagów HTML, korzystając z naszych zmiennych.
+*/
+@layer base {
+  body {
+    /* Ustawiamy tło i kolor tekstu na starcie */
+    background-color: var(--ui-bg);
+    color: var(--ui-text);
+    
+    /* Fonty i wygładzanie czcionek */
+    font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+    @apply antialiased;
+
+    /* Płynne przejście kolorów przy zmianie motywu */
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  }
+
+  /* Opcjonalnie: ustawiamy domyślny kolor dla wszystkich ramek */
+  * {
+    border-color: var(--ui-border);
+  }
 }

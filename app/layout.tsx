@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "./components/theme-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,12 +24,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="pl" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );
 }
+
+/**
+ * GŁÓWNY UKŁAD APLIKACJI (ROOT LAYOUT)
+ * -------------------------------------------------------------------------
+ * 1. Dodajemy 'suppressHydrationWarning' do <html>. Jest to konieczne, ponieważ
+ * next-themes modyfikuje atrybuty HTML na kliencie, co bez tej flagi
+ * powodowałoby błędy w konsoli (mismatch między serwerem a klientem).
+ * * 2. ThemeProvider otacza {children}, dając dostęp do motywów w całym projekcie.
+ */
