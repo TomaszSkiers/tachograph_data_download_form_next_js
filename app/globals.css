@@ -1,79 +1,71 @@
 @import "tailwindcss";
 
-/* =============================================================================
-  DESIGN SYSTEM CONFIGURATION (Tailwind CSS v4)
-  =============================================================================
-  Ten system opiera się na zmiennych funkcjonalnych. 
-  Nie używamy kolorów typu 'gray-900', lecz ich przeznaczenia (np. 'ui-bg').
-*/
+/* 1. Rejestracja wariantu DARK - musi być POZA blokiem @theme */
+@custom-variant dark (&:where(.dark, .dark *));
 
+/* 2. Definicja zmiennych systemu projektowego */
 @theme {
-  /* --- Powierzchnie i tła --- */
-  --color-ui-bg: var(--ui-bg);           /* Główne tło strony */
-  --color-ui-surface: var(--ui-surface); /* Tła kart, modali, wyskakujących okien */
-  --color-ui-input: var(--ui-input);     /* Tła pól formularzy, selectów */
+  /* Powierzchnie i tła */
+  --color-ui-bg: var(--ui-bg);
+  --color-ui-surface: var(--ui-surface);
+  --color-ui-input: var(--ui-input);
   
-  /* --- Treść i tekst --- */
-  --color-ui-text: var(--ui-text);             /* Główny tekst (wysoki kontrast) */
-  --color-ui-text-muted: var(--ui-text-muted); /* Tekst pomocniczy, placeholdery, etykiety */
-  --color-ui-border: var(--ui-border);         /* Linie podziału, obramowania pól */
+  /* Treść i tekst */
+  --color-ui-text: var(--ui-text);
+  --color-ui-text-muted: var(--ui-text-muted);
+  --color-ui-border: var(--ui-border);
   
-  /* --- Interakcja i stany --- */
-  --color-ui-ring: var(--ui-ring);               /* Kolor focus-ring (dostępność) */
-  --color-ui-ghost-hover: var(--ui-ghost-hover); /* Tło dla przycisków przezroczystych (Cancel) */
+  /* Interakcja */
+  --color-ui-ring: var(--ui-ring);
+  --color-ui-ghost-hover: var(--ui-ghost-hover);
   
-  /* --- Akcje CRUD i statusy --- */
-  --color-brand-primary: var(--brand-primary); /* Akcja główna, 'Update', 'Zapisz' */
-  --color-ui-success: var(--ui-success);       /* Akcja 'Create', 'Potwierdź', sukces */
-  --color-ui-danger: var(--ui-danger);         /* Akcja 'Delete', 'Anuluj', błędy */
-  --color-ui-warning: var(--ui-warning);       /* Ostrzeżenia, stany przejściowe */
-
-  /* Rejestracja wariantu ciemnego */
-  @custom-variant dark (&:where(.dark, .dark *));
+  /* Akcje CRUD */
+  --color-brand-primary: var(--brand-primary);
+  --color-ui-success: var(--ui-success);
+  --color-ui-danger: var(--ui-danger);
+  --color-ui-warning: var(--ui-warning);
 }
 
+/* 3. Wartości zmiennych dla trybu JASNEGO */
 :root {
-  /* --- LIGHT MODE (Dzień / Wysoki Kontrast) --- */
   --ui-bg: #ffffff;
   --ui-surface: #ffffff;
-  --ui-input: #f1f5f9;      /* Slate 100 */
-  --ui-text: #020617;       /* Slate 950 */
-  --ui-text-muted: #64748b; /* Slate 500 */
-  --ui-border: #cbd5e1;     /* Slate 300 */
-  --ui-ring: #2563eb;       /* Blue 600 */
+  --ui-input: #f1f5f9;
+  --ui-text: #020617;
+  --ui-text-muted: #64748b;
+  --ui-border: #cbd5e1;
+  --ui-ring: #2563eb;
   --ui-ghost-hover: #f1f5f9;
 
-  /* Akcje Light */
-  --brand-primary: #2563eb; /* Blue 600 */
-  --ui-success: #16a34a;    /* Green 600 */
-  --ui-danger: #dc2626;     /* Red 600 */
-  --ui-warning: #ea580c;    /* Orange 600 */
+  --brand-primary: #2563eb;
+  --ui-success: #16a34a;
+  --ui-danger: #dc2626;
+  --ui-warning: #ea580c;
 }
 
+/* 4. Wartości zmiennych dla trybu CIEMNEGO */
 .dark {
-  /* --- DARK MODE (Noc / Redukcja zmęczenia wzroku) --- */
-  --ui-bg: #020617;         /* Slate 950 (Bardzo ciemny granat) */
-  --ui-surface: #0f172a;     /* Slate 900 (Głębia modali) */
-  --ui-input: #1e293b;       /* Slate 800 (Wyróżnienie pól) */
-  --ui-text: #f8fafc;        /* Slate 50 */
-  --ui-text-muted: #94a3b8;  /* Slate 400 */
-  --ui-border: #334155;      /* Slate 700 */
-  --ui-ring: #60a5fa;        /* Blue 400 */
+  --ui-bg: #020617;
+  --ui-surface: #0f172a;
+  --ui-input: #1e293b;
+  --ui-text: #f8fafc;
+  --ui-text-muted: #94a3b8;
+  --ui-border: #334155;
+  --ui-ring: #60a5fa;
   --ui-ghost-hover: #1e293b;
 
-  /* Akcje Dark */
-  --brand-primary: #60a5fa; /* Blue 400 (Jaśniejszy dla kontrastu) */
-  --ui-success: #4ade80;    /* Green 400 */
-  --ui-danger: #fb7185;     /* Rose 400 */
-  --ui-warning: #fbbf24;    /* Amber 400 */
+  --brand-primary: #60a5fa;
+  --ui-success: #4ade80;
+  --ui-danger: #fb7185;
+  --ui-warning: #fbbf24;
 }
 
+/* 5. Style bazowe */
 @layer base {
   body {
     @apply bg-ui-bg text-ui-text transition-colors duration-300 antialiased;
   }
   
-  /* Globalny styl focusa dla klawiatury (Accessibility) */
   :focus-visible {
     @apply outline-none ring-2 ring-ui-ring ring-offset-2 ring-offset-ui-bg;
   }

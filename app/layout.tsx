@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { ThemeProvider } from "@/components/providers/ThemeProvider"; // Upewnij się, że ścieżka jest poprawna
 import "./globals.css";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,7 +16,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "e-formularz pobrania danych z tachografu cyfrowego",
-  description: "e-formularz pobrania danych z tachografu cyfrowego",
+  description: "Elektroniczny system pobierania danych z tachografów",
 };
 
 export default function RootLayout({
@@ -23,11 +25,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    // suppressHydrationWarning zapobiega błędom przy przełączaniu Dark/Light Mode
+    <html lang="pl" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`
+          ${geistSans.variable} 
+          ${geistMono.variable} 
+          antialiased 
+          bg-ui-bg text-ui-text transition-colors duration-300
+        `}
       >
-        {children}
+        <ThemeProvider>
+          {/* Główny kontener zapewniający, że tło wypełnia cały ekran */}
+          <div className="min-h-screen flex flex-col">
+            <ThemeToggle/>
+            {children}
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );
