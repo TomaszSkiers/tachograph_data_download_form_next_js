@@ -1,26 +1,80 @@
 @import "tailwindcss";
 
+/* =============================================================================
+  DESIGN SYSTEM CONFIGURATION (Tailwind CSS v4)
+  =============================================================================
+  Ten system opiera się na zmiennych funkcjonalnych. 
+  Nie używamy kolorów typu 'gray-900', lecz ich przeznaczenia (np. 'ui-bg').
+*/
+
+@theme {
+  /* --- Powierzchnie i tła --- */
+  --color-ui-bg: var(--ui-bg);           /* Główne tło strony */
+  --color-ui-surface: var(--ui-surface); /* Tła kart, modali, wyskakujących okien */
+  --color-ui-input: var(--ui-input);     /* Tła pól formularzy, selectów */
+  
+  /* --- Treść i tekst --- */
+  --color-ui-text: var(--ui-text);             /* Główny tekst (wysoki kontrast) */
+  --color-ui-text-muted: var(--ui-text-muted); /* Tekst pomocniczy, placeholdery, etykiety */
+  --color-ui-border: var(--ui-border);         /* Linie podziału, obramowania pól */
+  
+  /* --- Interakcja i stany --- */
+  --color-ui-ring: var(--ui-ring);               /* Kolor focus-ring (dostępność) */
+  --color-ui-ghost-hover: var(--ui-ghost-hover); /* Tło dla przycisków przezroczystych (Cancel) */
+  
+  /* --- Akcje CRUD i statusy --- */
+  --color-brand-primary: var(--brand-primary); /* Akcja główna, 'Update', 'Zapisz' */
+  --color-ui-success: var(--ui-success);       /* Akcja 'Create', 'Potwierdź', sukces */
+  --color-ui-danger: var(--ui-danger);         /* Akcja 'Delete', 'Anuluj', błędy */
+  --color-ui-warning: var(--ui-warning);       /* Ostrzeżenia, stany przejściowe */
+
+  /* Rejestracja wariantu ciemnego */
+  @custom-variant dark (&:where(.dark, .dark *));
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* --- LIGHT MODE (Dzień / Wysoki Kontrast) --- */
+  --ui-bg: #ffffff;
+  --ui-surface: #ffffff;
+  --ui-input: #f1f5f9;      /* Slate 100 */
+  --ui-text: #020617;       /* Slate 950 */
+  --ui-text-muted: #64748b; /* Slate 500 */
+  --ui-border: #cbd5e1;     /* Slate 300 */
+  --ui-ring: #2563eb;       /* Blue 600 */
+  --ui-ghost-hover: #f1f5f9;
+
+  /* Akcje Light */
+  --brand-primary: #2563eb; /* Blue 600 */
+  --ui-success: #16a34a;    /* Green 600 */
+  --ui-danger: #dc2626;     /* Red 600 */
+  --ui-warning: #ea580c;    /* Orange 600 */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.dark {
+  /* --- DARK MODE (Noc / Redukcja zmęczenia wzroku) --- */
+  --ui-bg: #020617;         /* Slate 950 (Bardzo ciemny granat) */
+  --ui-surface: #0f172a;     /* Slate 900 (Głębia modali) */
+  --ui-input: #1e293b;       /* Slate 800 (Wyróżnienie pól) */
+  --ui-text: #f8fafc;        /* Slate 50 */
+  --ui-text-muted: #94a3b8;  /* Slate 400 */
+  --ui-border: #334155;      /* Slate 700 */
+  --ui-ring: #60a5fa;        /* Blue 400 */
+  --ui-ghost-hover: #1e293b;
+
+  /* Akcje Dark */
+  --brand-primary: #60a5fa; /* Blue 400 (Jaśniejszy dla kontrastu) */
+  --ui-success: #4ade80;    /* Green 400 */
+  --ui-danger: #fb7185;     /* Rose 400 */
+  --ui-warning: #fbbf24;    /* Amber 400 */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    @apply bg-ui-bg text-ui-text transition-colors duration-300 antialiased;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  
+  /* Globalny styl focusa dla klawiatury (Accessibility) */
+  :focus-visible {
+    @apply outline-none ring-2 ring-ui-ring ring-offset-2 ring-offset-ui-bg;
+  }
 }
