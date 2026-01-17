@@ -16,3 +16,6 @@ export default function Home() {
     </div>
   );
 }
+
+// utworzyć nowa gałąź roboczą i w pliku plan pracy masz style dla przycisków
+// przeanalizować podejście do przycisków
