@@ -3,9 +3,7 @@
 // Podstawowe style dla wszystkich przycisków
 const baseButton = `
 inline-flex items-center justify-center
-font-medium whitespace-nowrap
 rounded-lg
-text-base
 transition-all
 duration-200
 ease-out

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/providers/ThemeProvider"; // Upewnij się, że ścieżka jest poprawna
 import "./globals.css";
-import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,10 +36,7 @@ export default function RootLayout({
       >
         <ThemeProvider>
           {/* Główny kontener zapewniający, że tło wypełnia cały ekran */}
-          <div className="min-h-screen flex flex-col">
-            <ThemeToggle/>
-            {children}
-          </div>
+          <div className="min-h-screen flex flex-col">{children}</div>
         </ThemeProvider>
       </body>
     </html>
