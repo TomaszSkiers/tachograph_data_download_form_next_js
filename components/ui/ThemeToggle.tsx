@@ -30,9 +30,9 @@ export function ThemeToggle() {
       aria-label="Przełącz motyw"
     >
       {isDark ? (
-        <Sun size={20} className="text-ui-warning" />
+        <Sun size={24} className="text-ui-warning" />
       ) : (
-        <Moon size={20} className="text-brand-primary" />
+        <Moon size={24} className="text-brand-primary" />
       )}
     </button>
   );
