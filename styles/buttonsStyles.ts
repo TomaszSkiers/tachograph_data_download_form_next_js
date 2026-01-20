@@ -2,7 +2,7 @@
 
 // Podstawowe style dla wszystkich przycisków
 const baseButton = `
-inline-flex items-center justify-center
+flex
 rounded-lg
 transition-all
 duration-200
@@ -63,7 +63,7 @@ active:bg-ui-border
 // GHOST (dodatkowy)
 export const ghostButton = `
 ${baseButton}
-bg-transparent
+bg-ui-surface
 text-ui-text
 hover:bg-ui-ghost-hover
 active:bg-ui-border

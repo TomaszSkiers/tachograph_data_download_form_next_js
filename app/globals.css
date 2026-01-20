@@ -29,7 +29,7 @@
 /* 3. Wartości zmiennych dla trybu JASNEGO */
 :root {
   --ui-bg: #ffffff;
-  --ui-surface: #ffffff;
+  --ui-surface: #eeeeee;
   --ui-input: #f1f5f9;
   --ui-text: #020617;
   --ui-text-muted: #64748b;

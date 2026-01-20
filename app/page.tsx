@@ -28,7 +28,7 @@ export default function Home() {
         <section className="flex-1 flex items-center justify-center">
           <Link
             href="/pulpit"
-            className={`${primaryButton} h-20 px-20 text-2xl font-bold tracking-wide`}
+            className={`${primaryButton} h-20 px-20 text-2xl items-center font-bold tracking-wide`}
           >
             Start
           </Link>
