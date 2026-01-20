@@ -45,7 +45,7 @@ export default function Pulpit() {
       </section>
       <div className="sm:hidden flex items-center justify-center border border-ui-border h-30">reklama</div>
       <div className="hidden sm:block  flex-1 w-full max-w-5xl mx-auto border border-ui-border p-5">
-        reklama
+        reklama reklama
       </div>
     </div>
   );
