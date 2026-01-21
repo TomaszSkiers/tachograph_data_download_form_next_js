@@ -32,7 +32,7 @@ export default function RootLayout({
         {/* Skrypt Google AdSense */}
         <Script
           id="adsense-init"
-          strategy="afterInteractive" // Ładuje skrypt zaraz po tym, jak strona stanie się interaktywna
+          strategy="beforeInteractive" // Ładuje skrypt zaraz po tym, jak strona stanie się interaktywna
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5044844456739196"
           crossOrigin="anonymous"
         />
