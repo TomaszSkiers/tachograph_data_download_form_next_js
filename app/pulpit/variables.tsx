@@ -1,6 +1,21 @@
 import { Settings, FileText } from "lucide-react";
+import { ReactNode } from "react";
 
-export const buttons = [
+interface MenuButton {
+  title: string;
+  description: string;
+  href: string;
+  icon: ReactNode;
+}
+
+interface MenuButtonDesktop {
+  title: string;
+  description: string;
+  href: string;
+  icon: ReactNode;
+}
+
+export const buttons: MenuButton[] = [
   {
     title: "Ustawienia serwisu",
     description:
@@ -12,7 +27,7 @@ export const buttons = [
     title: "Wniosek i pokwitowanie pobrania danych",
     description: "Generuj dokumenty pobrania danych z tachografu cyfrowego",
     href: "/wniosek-pobranie",
-    icon: <FileText size={30} />,
+    icon: <FileText size={30} color="green"/>,
   },
   {
     title: "Innne dokumenty",
@@ -34,7 +49,7 @@ export const buttons = [
   // },
 ];
 
-export const buttonsDesktop = [
+export const buttonsDesktop: MenuButtonDesktop[] = [
   {
     title: "Ustawienia serwisu",
     description:
@@ -46,7 +61,7 @@ export const buttonsDesktop = [
     title: "Wniosek i pokwitowanie pobrania danych",
     description: "Generuj dokumenty pobrania danych z tachografu cyfrowego",
     href: "/wniosek-pobranie",
-    icon: <FileText size={30} />,
+    icon: <FileText size={30} color="yellow"/>,
   },
   {
     title: "Innne dokumenty",

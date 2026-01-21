@@ -27,7 +27,7 @@ export default function Header({
 }: HeaderProps) {
   return (
     <header className={`sticky top-0 z-10 bg-ui-bg ${className}`}>
-      <div className={`bg-ui-surface mx-auto w-full max-w-5xl px-4 border-b border-ui-border sm:px-6 lg:px-8 ${innerClassName}`}>
+      <div className={` mx-auto w-full max-w-5xl px-4  sm:px-6 lg:px-8 ${innerClassName}`}>
         <div className="h-16 flex items-center justify-between">
           <h1 className="text-xl font-black tracking-wide text-ui-text">
             {title}

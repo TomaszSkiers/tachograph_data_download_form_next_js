@@ -1,18 +1,22 @@
 // app/page.tsx - BEZ 'use client'!
-import Link from "next/link"
-import { ThemeToggle } from "@/components/ui/ThemeToggle"
-import { primaryButton } from "@/styles/buttonsStyles"
+import Link from "next/link";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { primaryButton } from "@/styles/buttonsStyles";
+import Footer from "@/components/ui/Footer";
+import AdLeaderboard from "@/components/asSenseGoogle/AdLeaderboard";
 
 export default function Home() {
   return (
-    <div className="border border-ui-border h-svh flex flex-col">
-      <header className="h-16 flex bg-ui-surface mx-auto w-full max-w-5xl gap-2 border-b border-ui-border">
-        <div className="flex items-center m-2">
-          <ThemeToggle />
+    <div className=" h-svh flex flex-col">
+      <header className="h-16 flex bg-ui-surface mx-auto w-full  border-b border-ui-border">
+        <div className="flex w-full max-w-5xl mx-auto justify-between px-6">
+          <div className="flex items-center m-2">
+            <ThemeToggle />
+          </div>
+          <span className="flex items-center text-xl font-black tracking-wide">
+            Strona startowa
+          </span>
         </div>
-        <span className="flex items-center text-xl font-black tracking-wide">
-          Strona startowa
-        </span>
       </header>
 
       <main className="flex-1 flex flex-col">
@@ -35,9 +39,11 @@ export default function Home() {
         </section>
 
         <section className="flex-1 flex items-center justify-center">
-          <p>informacje dodatkowe</p>
+          <AdLeaderboard className="hidden sm:block" />
         </section>
       </main>
+      <Footer className="hidden sm:block"></Footer>
+      <AdLeaderboard className="sm:hidden" />
     </div>
-  )
+  );
 }
