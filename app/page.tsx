@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { primaryButton } from "@/styles/buttonsStyles";
 import Footer from "@/components/ui/Footer";
-import AdLeaderboard from "@/components/asSenseGoogle/AdLeaderboard";
+
 
 export default function Home() {
   return (
@@ -38,12 +38,10 @@ export default function Home() {
           </Link>
         </section>
 
-        <section className="flex-1 flex items-center justify-center">
-          <AdLeaderboard className="hidden sm:block" />
-        </section>
+        
       </main>
       <Footer className="hidden sm:block"></Footer>
-      <AdLeaderboard className="sm:hidden" />
+      
     </div>
   );
 }
