@@ -2,8 +2,6 @@
 import Link from "next/link";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { primaryButton } from "@/styles/buttonsStyles";
-import Footer from "@/components/ui/Footer";
-
 
 export default function Home() {
   return (
@@ -37,11 +35,48 @@ export default function Home() {
             Start
           </Link>
         </section>
-
-        
       </main>
-      <Footer className="hidden sm:block"></Footer>
-      
+
+      <section className="max-w-5xl mx-auto px-6 py-12">
+        <details className="group">
+          <summary className="cursor-pointer text-lg font-bold text-primary">
+            Więcej informacji o aplikacji
+          </summary>
+
+          <article className="mt-6 space-y-4 text-sm sm:text-base">
+            <p>
+              Aplikacja umożliwia autoryzowanym warsztatom tachografów szybkie
+              generowanie poświadczeń pobrania danych z tachografu cyfrowego w
+              formacie PDF zgodnie z obowiązującymi przepisami.
+            </p>
+
+            <p>
+              System umożliwia zapis danych w formacie JSON lub PDF, co pozwala
+              na ich ponowne wykorzystanie przy kolejnych pobraniach danych i
+              znacząco skraca czas obsługi klienta.
+            </p>
+          </article>
+        </details>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="border-t border-ui-border">
+        <div className="max-w-6xl mx-auto px-6 py-6 text-xs text-center text-ui-muted">
+          <div className="mb-2">
+            © {new Date().getFullYear()} e-Formularz – pobranie danych z
+            tachografu cyfrowego. Wszystkie prawa zastrzeżone.
+          </div>
+          <div className="flex justify-center gap-4">
+            <Link
+              href="/privacy-policy"
+              className="hover:text-ui-foreground transition-colors  "
+            >
+              Polityka Prywatności
+            </Link>
+            {/* Tu możesz w przyszłości dodać np. Regulamin */}
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

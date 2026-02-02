@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import Script from "next/script"; // Importujemy dedykowany komponent
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,9 +15,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "e-formularz pobrania danych z tachografu cyfrowego",
+  title: "e-Formularz pobrania danych z tachografu cyfrowego",
   description:
-    "e-formularz pobierania danych z tachografów, procedura pobierania danych, elektroniczny formularz, aplikacja",
+    "Elektroniczny formularz pobierania danych z tachografów. Bezpieczna procedura i szybka aplikacja webowa.",
 };
 
 export default function RootLayout({
@@ -25,14 +26,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    // suppressHydrationWarning zapobiega błędom przy przełączaniu Dark/Light Mode
     <html lang="pl" suppressHydrationWarning>
       <head>
-        <script
+        <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5044844456739196"
           crossOrigin="anonymous"
-        ></script>
+          strategy="afterInteractive" 
+        />
       </head>
       <body
         className={`

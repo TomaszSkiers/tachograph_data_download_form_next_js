@@ -5,8 +5,6 @@ import { ghostButton } from "@/styles/buttonsStyles";
 import { buttons, buttonsDesktop } from "./variables";
 
 
-import Footer from "@/components/ui/Footer";
-
 const buttonStyle = `${ghostButton} flex-col items-center gap-5 w-full p-2 font-bold border border-ui-border flex-1`;
 
 export default function Pulpit() {
@@ -47,7 +45,15 @@ export default function Pulpit() {
       </section>
 
       
-      <Footer className="hidden sm:block"/> 
+      {/* FOOTER */}
+      <footer className=" border-t border-ui-border">
+        <div className="max-w-6xl mx-auto px-6 py-6 text-xs text-center text-ui-muted">
+          <div className="mb-2">
+            © {new Date().getFullYear()} e-Formularz – pobranie danych z
+            tachografu cyfrowego. Wszystkie prawa zastrzeżone.
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
