@@ -5,8 +5,7 @@ import { primaryButton } from "@/styles/buttonsStyles";
 
 export default function Home() {
 
-console.log(process.env.NODE_ENV)
-console.log('test env')
+
 
   return (
     <div className=" h-svh flex flex-col">
@@ -29,6 +28,7 @@ console.log('test env')
           <p className="text-xl sm:text-2xl font-bold tracking-wide text-center">
             pobranie danych z tachografu cyfrowego
           </p>
+          {process.env.NODE_ENV === 'production' ? <p>production</p> : <p>development</p>}
         </section>
 
         <section className="flex-1 flex items-center justify-center">
