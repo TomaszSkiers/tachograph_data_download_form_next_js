@@ -9,7 +9,7 @@ export const metadata = {
 
 export default function PrivacyPolicy() {
   return (
-    <div className="bg-ui-bg min-h-screen transition-colors duration-300">
+    <div className="bg-ui-bg min-h-screen transition-colors duration-300 flex flex-col">
       <Header
         title="Polityka prywatności"
         backButtonHref="/"
@@ -24,7 +24,7 @@ export default function PrivacyPolicy() {
               <span className="mr-2">🛡️</span> Twoje dane są bezpieczne
             </h2>
             <p className="font-medium mb-3">
-              Jako autor aplikacji gwarantuję, że Twoje dane z tachografu są w
+              Jako autor aplikacji gwarantuję, że Twoje dane wprowadzane w formularzach są w
               pełni prywatne:
             </p>
             <ul className="list-disc ml-6 space-y-2 text-ui-text-muted">
@@ -113,6 +113,8 @@ export default function PrivacyPolicy() {
           </div>
         </section>
       </main>
+
+      <div className="flex-1"></div>
       {/* FOOTER */}
       <footer className=" border-t border-ui-border">
         <div className="max-w-6xl mx-auto px-6 py-6 text-xs text-center text-ui-muted">

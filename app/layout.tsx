@@ -28,6 +28,7 @@ export default function RootLayout({
   return (
     <html lang="pl" suppressHydrationWarning>
       <head>
+        <meta name="monetag" content="5808406a58cc1101993436aa775b46a5"></meta>
         <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5044844456739196"

@@ -16,8 +16,10 @@ export default function Pulpit() {
         backButtonLabel="Powrót do strony startowej"
         className=" bg-ui-surface border-b border-ui-border"
       />
+
+      <div className="flex-1 border border-ui-border w-full max-w-5xl mx-auto rounded-2xl mt-5 hidden sm:block"></div>
       
-      <section className="sm:hidden flex-1 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-1  w-full max-w-5xl mx-auto p-3 h-full">
+      <section className=" flex-1 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-1  w-full max-w-5xl mx-auto p-3 h-full">
         {buttons.map((button, index) => (
           <Link key={index} href={button.href} className={buttonStyle}>
             <div className="flex flex-1 w-full items-center justify-start gap-5">
@@ -30,20 +32,8 @@ export default function Pulpit() {
           </Link>
         ))}
       </section>
-      <section className="hidden sm:grid flex-1  grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-1  w-full max-w-5xl mx-auto p-3 h-full">
-        {buttonsDesktop.map((button, index) => (
-          <Link key={index} href={button.href} className={buttonStyle}>
-            <div className="flex flex-1 w-full items-center justify-start gap-5">
-              {button.icon}
-              <span>{button.title}</span>
-            </div>
-            <p className="flex-1 text-sm text-ui-text-muted">
-              {button.description}
-            </p>
-          </Link>
-        ))}
-      </section>
-
+      
+        <div className="flex-2 border border-ui-border w-full max-w-5xl mx-auto rounded-2xl mb-5 hidden sm:block"></div>
       
       {/* FOOTER */}
       <footer className=" border-t border-ui-border">
