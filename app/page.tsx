@@ -6,6 +6,7 @@ import { primaryButton } from "@/styles/buttonsStyles";
 export default function Home() {
 
 console.log(process.env.NODE_ENV)
+console.log('test env')
 
   return (
     <div className=" h-svh flex flex-col">
