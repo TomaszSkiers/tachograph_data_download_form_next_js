@@ -4,6 +4,9 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { primaryButton } from "@/styles/buttonsStyles";
 
 export default function Home() {
+
+console.log(process.env.NODE_ENV)
+
   return (
     <div className=" h-svh flex flex-col">
       <header className="h-16 flex bg-ui-surface mx-auto w-full  border-b border-ui-border">
