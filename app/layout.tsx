@@ -30,11 +30,25 @@ export default function RootLayout({
       <head>
         <meta name="monetag" content="5808406a58cc1101993436aa775b46a5"></meta>
         <Script
+          src="https://quge5.com/88/tag.min.js"
+          data-zone="208352"
+          data-cfasync="false"
+          strategy="afterInteractive"
+        />
+        {/* Skrypt Monetag zoptymalizowany dla Next.js */}
+        <Script
+          id="monetag-in-page-push"
+          src="https://nap5k.com/tag.min.js"
+          data-zone="10564900"
+          strategy="lazyOnload" 
+        />
+        <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5044844456739196"
           crossOrigin="anonymous"
           strategy="afterInteractive" 
         />
+
       </head>
       <body
         className={`
