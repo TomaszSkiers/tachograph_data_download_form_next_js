@@ -29,12 +29,7 @@ export default function RootLayout({
     <html lang="pl" suppressHydrationWarning>
       <head>
         <meta name="monetag" content="5808406a58cc1101993436aa775b46a5"></meta>
-        <Script
-          src="https://quge5.com/88/tag.min.js"
-          data-zone="208352"
-          data-cfasync="false"
-          strategy="afterInteractive"
-        />
+        
         
         <Script
           async
