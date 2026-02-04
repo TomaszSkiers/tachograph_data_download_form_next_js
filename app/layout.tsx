@@ -29,7 +29,7 @@ export default function RootLayout({
     <html lang="pl" suppressHydrationWarning>
       <head>
         <meta name="monetag" content="5808406a58cc1101993436aa775b46a5"></meta>
-        
+
         {/* Skrypt Monetag zoptymalizowany dla Next.js */}
         <Script
           id="monetag-in-page-push"
@@ -55,6 +55,13 @@ export default function RootLayout({
         `}
       >
         <ThemeProvider>{children}</ThemeProvider>
+        {/* Nowy Multitag Monetag */}
+        <Script
+          id="monetag-multitag"
+          src="https://3nbf4.com/act/files/tag.min.js?z=10565784"
+          strategy="lazyOnload" // Ładuje po interakcji, nie blokuje renderowania strony
+          data-cfasync="false"   // Wyłącza optymalizację Rocket Loader od Cloudflare
+        />
       </body>
     </html>
   );
