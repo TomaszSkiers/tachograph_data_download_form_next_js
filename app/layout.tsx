@@ -55,13 +55,15 @@ export default function RootLayout({
         `}
       >
         <ThemeProvider>{children}</ThemeProvider>
-        {/* Nowy Multitag Monetag */}
-        <Script
-          id="monetag-multitag"
-          src="https://3nbf4.com/act/files/tag.min.js?z=10565784"
-          strategy="lazyOnload" // Ładuje po interakcji, nie blokuje renderowania strony
-          data-cfasync="false"   // Wyłącza optymalizację Rocket Loader od Cloudflare
-        />
+        {/* Implementacja skryptu */}
+        <Script id="vignette-ad" strategy="afterInteractive">
+          {`
+            (function(s){
+              s.dataset.zone='10573317';
+              s.src='https://gizokraijaw.net/vignette.min.js';
+            })([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))
+          `}
+        </Script>
       </body>
     </html>
   );

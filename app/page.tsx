@@ -31,14 +31,17 @@ export default function Home() {
           {process.env.NODE_ENV === 'production' ? <p>production</p> : <p>development</p>}
         </section>
 
-        <section className="flex-1 flex items-center justify-center">
+        <section className="flex-1 flex items-center justify-center gap-8">
           <Link
             href="/pulpit"
             className={`${primaryButton} h-20 px-20 text-2xl items-center font-bold tracking-wide`}
           >
             Start
           </Link>
+
+          
         </section>
+
       </main>
 
       <section className="max-w-5xl mx-auto px-6 py-12">
