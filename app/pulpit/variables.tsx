@@ -20,7 +20,7 @@ export const buttons: MenuButton[] = [
     title: "Ustawienia serwisu",
     description:
       "Ustaw nazwę serwisu, dodaj techników, pojazdy i inne parametry.",
-    href: "/ustawienia",
+    href: "/pulpit/settings",
     icon: <Settings size={30} color="blue" />,
   },
   {

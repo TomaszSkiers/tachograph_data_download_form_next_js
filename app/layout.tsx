@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
-import Script from "next/script"; // Importujemy dedykowany komponent
+// import Script from "next/script"; // Importujemy dedykowany komponent
 import "./globals.css";
 
 const geistSans = Geist({
@@ -28,22 +28,24 @@ export default function RootLayout({
   return (
     <html lang="pl" suppressHydrationWarning>
       <head>
-        <meta name="monetag" content="5808406a58cc1101993436aa775b46a5"></meta>
 
-        {/* Skrypt Monetag zoptymalizowany dla Next.js */}
-        <Script
+         {/* Skrypt Monetag zoptymalizowany dla Next.js */}
+
+        {/* <meta name="monetag" content="5808406a58cc1101993436aa775b46a5"></meta> */}
+
+        {/* <Script
           id="monetag-in-page-push"
           src="https://nap5k.com/tag.min.js"
           data-zone="10564900"
           strategy="lazyOnload" 
-        />
+        /> */}
         
-        <Script
+        {/* <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5044844456739196"
           crossOrigin="anonymous"
           strategy="afterInteractive" 
-        />
+        /> */}
 
       </head>
       <body
@@ -55,15 +57,16 @@ export default function RootLayout({
         `}
       >
         <ThemeProvider>{children}</ThemeProvider>
-        {/* Implementacja skryptu */}
-        <Script id="vignette-ad" strategy="afterInteractive">
+
+        {/* Implementacja skryptu vignette-baner-monetag*/}
+        {/* <Script id="vignette-ad" strategy="afterInteractive">
           {`
             (function(s){
               s.dataset.zone='10573317';
               s.src='https://gizokraijaw.net/vignette.min.js';
             })([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))
           `}
-        </Script>
+        </Script> */}
       </body>
     </html>
   );

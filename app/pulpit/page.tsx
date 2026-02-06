@@ -2,7 +2,8 @@
 import Link from "next/link";
 import Header from "@/components/ui/Header";
 import { ghostButton } from "@/styles/buttonsStyles";
-import { buttons, buttonsDesktop } from "./variables";
+import { buttons, } from "./variables";
+import { Footer } from "@/components/ui/Footer";
 
 
 
@@ -39,14 +40,7 @@ export default function Pulpit() {
         <div className="flex-2 border border-ui-border w-full max-w-5xl mx-auto rounded-2xl mb-5 hidden sm:block"></div>
       
       {/* FOOTER */}
-      <footer className=" border-t border-ui-border">
-        <div className="max-w-6xl mx-auto px-6 py-6 text-xs text-center text-ui-muted">
-          <div className="mb-2">
-            © {new Date().getFullYear()} e-Formularz – pobranie danych z
-            tachografu cyfrowego. Wszystkie prawa zastrzeżone.
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
