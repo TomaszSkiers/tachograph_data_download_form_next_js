@@ -1,22 +1,24 @@
-import { Footer } from "@/components/ui/Footer";
-import Header from "@/components/ui/Header";
+import { ghostButton } from "@/styles/buttonsStyles";
+import { buttons } from '../variables'
+import PageButtonWrapper from "@/components/ui/PageButtonWrapper";
+const buttonStyle = `${ghostButton} flex-col items-center gap-5 w-full p-2 font-bold border border-ui-border flex-1`;
+import Link from "next/link";
+
 
 export default function Settings() {
   return (
-    <div className="h-svh flex flex-col">
-      <Header
-        title="Pulpit"
-        backButtonHref="/pulpit"
-        backButtonLabel="Powrót do strony startowej"
-        className=" bg-ui-surface border-b border-ui-border"
-      />
-      <div className="flex-1 border border-ui-border w-full max-w-5xl mx-auto rounded-2xl mt-5 hidden sm:block">
-        reklama
-      </div>
-      <section>main</section>
-
-      <div className="flex-2 border border-ui-border w-full max-w-5xl mx-auto rounded-2xl mb-5 hidden sm:block"></div>
-      <Footer />
-    </div>
+    <PageButtonWrapper > 
+      {buttons.map((button, index) => (
+          <Link key={index} href={button.href} className={buttonStyle}>
+            <div className="flex flex-1 w-full items-center justify-start gap-5">
+              {button.icon}
+              <span>{button.title}</span>
+            </div>
+            <p className="flex-1 text-sm text-ui-text-muted">
+              {button.description}
+            </p>
+          </Link>
+        ))}
+    </PageButtonWrapper>
   );
 }
