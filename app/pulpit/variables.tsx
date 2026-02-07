@@ -1,4 +1,4 @@
-import { Settings, FileText } from "lucide-react";
+import { Settings, FileText, UserPlus, Warehouse, Truck, MessageCircleQuestionMark, BetweenHorizonalEnd } from "lucide-react";
 import { ReactNode } from "react";
 
 interface MenuButton {
@@ -8,12 +8,6 @@ interface MenuButton {
   icon: ReactNode;
 }
 
-interface MenuButtonDesktop {
-  title: string;
-  description: string;
-  href: string;
-  icon: ReactNode;
-}
 
 export const buttons: MenuButton[] = [
   {
@@ -27,58 +21,57 @@ export const buttons: MenuButton[] = [
     title: "Wniosek i pokwitowanie pobrania danych",
     description: "Generuj dokumenty pobrania danych z tachografu cyfrowego",
     href: "/wniosek-pobranie",
-    icon: <FileText size={30} color="green"/>,
+    icon: <FileText size={30} color="green" />,
   },
   {
     title: "Innne dokumenty",
-    description: "Brak możliwości pobrania danych, usunięcie danych, procedura pobierania danch itp.",
+    description:
+      "Brak możliwości pobrania danych, usunięcie danych, procedura pobierania danch itp.",
     href: "/brak-pobrania",
     icon: <FileText size={30} />,
   },
-  // {
-  //   title: "Protokół usunięcia danych przez warsztat",
-  //   description: "Rejestruj usunięcie danych z tachografu podczas naprawy",
-  //   href: "/protokol-usuniecia",
-  //   icon: <FileText size={30} />,
-  // },
-  // {
-  //   title: "Procedura pobierania danych",
-  //   description: "Instrukcje i procedury pobierania danych z tachografów",
-  //   href: "/procedura",
-  //   icon: <FileText size={30} />,
-  // },
+    {
+    title: "Reklama",
+    description:
+      "Brak możliwości pobrania danych, usunięcie danych, procedura pobierania danch itp.",
+    href: "/brak-pobrania",
+    icon: <BetweenHorizonalEnd size={30} />,
+  },
+  
 ];
 
-export const buttonsDesktop: MenuButtonDesktop[] = [
+
+
+interface settingsPageButtonsProps {
+  title: string;
+  description: string;
+  href: string;
+  icon: ReactNode;
+}
+
+export const settingsPageButtons: settingsPageButtonsProps[] = [
   {
-    title: "Ustawienia serwisu",
-    description:
-      "Ustaw nazwę serwisu, dodaj techników, pojazdy i inne parametry.",
-    href: "/ustawienia",
-    icon: <Settings size={30} color="blue" />,
+    title: "Ustaw dane twojego serwisu",
+    description: "Dodaj nazwę, adres swojego serwisu",
+    href: "/pulpit/settings/serviceNameAndAddress",
+    icon: <Warehouse color="yellow" />,
   },
   {
-    title: "Wniosek i pokwitowanie pobrania danych",
-    description: "Generuj dokumenty pobrania danych z tachografu cyfrowego",
-    href: "/wniosek-pobranie",
-    icon: <FileText size={30} color="yellow"/>,
+    title: "Technicy",
+    description: "Wprowadź imię i nazwisko technika, nr. karty warsztatowej",
+    href: "/pulpit/settings/addTechnician",
+    icon: <UserPlus color="lightGreen" />,
   },
   {
-    title: "Innne dokumenty",
-    description: "Brak możliwości pobrania danych, usunięcie danych, procedura pobierania danch itp.",
-    href: "/brak-pobrania",
-    icon: <FileText size={30} />,
+    title: "Lista pojazdów",
+    description: "Przegladaj pojazdy, lub dodaj pojazd oraz jego typ",
+    href: "/pulpit/settings/vehiclesList",
+    icon: <Truck color="lightBlue" />,
   },
   {
-    title: "Protokół usunięcia danych przez warsztat",
-    description: "Rejestruj usunięcie danych z tachografu podczas naprawy",
-    href: "/protokol-usuniecia",
-    icon: <FileText size={30} />,
+    title: "Powód pobrania danych",
+    description: "Dodaj powód pobrania danych",
+    href: "/pulpit/settings/dataDownloadReason",
+    icon: <MessageCircleQuestionMark color="orange" />,
   },
-  {
-    title: "Procedura pobierania danych",
-    description: "Instrukcje i procedury pobierania danych z tachografów",
-    href: "/procedura",
-    icon: <FileText size={30} />,
-  },
-]
+];

@@ -1,5 +1,5 @@
 import { ghostButton } from "@/styles/buttonsStyles";
-import { buttons } from '../variables'
+import { settingsPageButtons } from '../variables'
 import PageButtonWrapper from "@/components/ui/PageButtonWrapper";
 const buttonStyle = `${ghostButton} flex-col items-center gap-5 w-full p-2 font-bold border border-ui-border flex-1`;
 import Link from "next/link";
@@ -7,8 +7,8 @@ import Link from "next/link";
 
 export default function Settings() {
   return (
-    <PageButtonWrapper > 
-      {buttons.map((button, index) => (
+    <PageButtonWrapper pageName="Pulpit - ustawienia"> 
+      {settingsPageButtons.map((button, index) => (
           <Link key={index} href={button.href} className={buttonStyle}>
             <div className="flex flex-1 w-full items-center justify-start gap-5">
               {button.icon}

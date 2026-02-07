@@ -26,7 +26,7 @@ active:bg-brand-primary/70
 export const successButton = `
 ${baseButton}
 bg-ui-success
-text-white
+text-ui-input
 hover:bg-ui-success/80
 active:bg-ui-success/70
 `;
@@ -44,7 +44,7 @@ active:bg-ui-danger/70
 export const warningButton= `
 ${baseButton}
 bg-ui-warning
-text-white
+text-ui-input
 hover:bg-ui-warning/80
 active:bg-ui-warning/70
 `;

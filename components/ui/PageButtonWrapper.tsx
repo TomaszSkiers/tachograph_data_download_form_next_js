@@ -3,22 +3,24 @@ import Header from "@/components/ui/Header";
 
 interface ButtonWrapper {
   children: React.ReactNode;
+  pageName?: string;
+  backHref?: string;
 }
 
-export default function PageButtonWrapper({ children }: ButtonWrapper) {
+export default function PageButtonWrapper({ children, pageName='wpisz nazwę strony', backHref='/pulpit' }: ButtonWrapper) {
   return (
     <div className="h-svh flex flex-col">
       <Header
-        title="Pulpit"
-        backButtonHref="/pulpit"
-        backButtonLabel="Powrót do strony startowej"
+        title={pageName}
+        backButtonHref={backHref}
+        backButtonLabel="Powrót do poprzedniej strony"
         className=" bg-ui-surface border-b border-ui-border"
       />
       <div className="flex-1 justify-center items-center  border border-ui-border w-full max-w-5xl mx-auto rounded-2xl mt-5 hidden sm:flex">
         reklama
       </div>
 
-      <section className=" flex-1 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-1  w-full max-w-5xl mx-auto p-3 h-full">
+      <section className=" flex-1 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-1  w-full max-w-5xl mx-auto p-3 h-full ">
         {children}
       </section>
 
