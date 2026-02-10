@@ -1,4 +1,12 @@
-import { Settings, FileText, UserPlus, Warehouse, Truck, MessageCircleQuestionMark, BetweenHorizonalEnd } from "lucide-react";
+import {
+  Settings,
+  FileText,
+  UserPlus,
+  Warehouse,
+  Truck,
+  MessageCircleQuestionMark,
+  BetweenHorizonalEnd,
+} from "lucide-react";
 import { ReactNode } from "react";
 
 interface MenuButton {
@@ -7,7 +15,6 @@ interface MenuButton {
   href: string;
   icon: ReactNode;
 }
-
 
 export const buttons: MenuButton[] = [
   {
@@ -30,17 +37,41 @@ export const buttons: MenuButton[] = [
     href: "/brak-pobrania",
     icon: <FileText size={30} />,
   },
-    {
+  {
     title: "Reklama",
     description:
       "Brak możliwości pobrania danych, usunięcie danych, procedura pobierania danch itp.",
     href: "/brak-pobrania",
     icon: <BetweenHorizonalEnd size={30} />,
   },
-  
 ];
 
-
+export const buttonsDesktopViewForms: MenuButton[] = [
+  {
+    title: "Formularz pobrania danych z tachografu cyfrowego",
+    description: "Ten formularz wygeneruje wniosek o pobranie danych oraz pokwitowanie przekazania danych z przyrządu rejestrującego",
+    href: "",
+    icon: <FileText size={40}/>,
+  },
+  {
+    title: "Formularz braku możliwości pobrania danych z tachografu",
+    description: "Ten fromularz wygeneruje wniosek o pobranie danych oraz poświadczenie o braku możliwości pobrania danych z przyrządu rejestrującego",
+    href: "",
+    icon: <FileText size={40}/>,
+  },
+  {
+    title: "Formularz usunięcia danych pobranych przez warsztat",
+    description: "Ten formularz wygeneruje poświadczenie usunięcia danych pobranych przez warsztat",
+    href: "",
+    icon: <FileText size={40}/>,
+  },
+  {
+    title: "Procedura pobierania danych",
+    description: "Pełna procedura pobierania, przechowywania i przekazywania danych z tachografu cyfrowego - online",
+    href: "",
+    icon: <FileText size={40}/>,
+  },
+];
 
 interface settingsPageButtonsProps {
   title: string;

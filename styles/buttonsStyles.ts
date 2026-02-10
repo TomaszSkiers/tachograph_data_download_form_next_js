@@ -62,8 +62,7 @@ active:bg-ui-border
 
 // GHOST (dodatkowy)
 export const ghostButton = `
-${baseButton}
-bg-ui-surface
+${baseButton} 
 text-ui-text
 hover:bg-ui-ghost-hover
 active:bg-ui-border
