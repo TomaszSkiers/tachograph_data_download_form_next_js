@@ -60,6 +60,15 @@
   --ui-warning: #fbbf24;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:hover {
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+  -webkit-text-fill-color: white !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+
 /* 5. Style bazowe */
 @layer base {
   body {
@@ -70,3 +79,6 @@
     @apply outline-none ring-2 ring-ui-ring ring-offset-2 ring-offset-ui-bg;
   }
 }
+
+
+
