@@ -1,62 +1,60 @@
-'use client'
+"use client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import FormInput from "../formComponents/FormInput";
 import { useForm } from "react-hook-form";
 
-import { z } from "zod";
 import { primaryButton } from "@/styles/buttonsStyles";
 import { useLocalStorage } from "@/hooks/useLocalStorage_Test_1";
-import { useEffect } from "react";
+import { Dispatch, SetStateAction} from "react";
 
-const addressSchema = z.object({
-  city: z
-    .string()
-    .min(2, "nazwa miasta musi mieć min 2 znaki")
-    .max(80, "max 80 znaków"),
-  street: z
-    .string()
-    .min(2, "nazwa ulicy musi mieć nim 2 znaki")
-    .max(80, "maz 80 znaków"),
-  serviceName: z
-    .string()
-    .min(1, "nazwa serwisu musi mieć min  1 znak")
-    .max(100, "max 100 znaków"),
-  id: z.string().optional(),
-});
+import { formTypes, addressSchema, hookDataSchema, hookTypes } from "./schemas";
 
-type AddressFormValues = z.infer<typeof addressSchema>;
-const formData = z.array(addressSchema);
 
-export default function SetWorkshopData() {
 
-  const [serviceData, setServiceData] = useLocalStorage<AddressFormValues[]>(
+interface objProps {
+  obj: hookTypes;
+  formView: Dispatch<SetStateAction<number>>
+}
+
+export default function SetWorkshopData({ obj, formView }: objProps) {
+  
+
+  const [, setServiceData] = useLocalStorage<hookTypes[]>(
     "serviceData",
     [],
-    formData,
+    hookDataSchema,
   );
 
-  useEffect(() => {
-    console.log('dane serwisu', serviceData)
-  },[serviceData])
+  // useEffect(() => {
+  //   console.log("dane serwisu", serviceData);
+  // }, [serviceData]);
 
-  const addServiceData = (item: AddressFormValues) => {
-    setServiceData((prv) => [...prv, item])
-  }
+  const handleAddServiceData = (item: formTypes, id: string) => {
+    if (id === '') {
+      const itemUpdated = {...item, id: crypto.randomUUID()}
+      setServiceData((prv) => [...prv, itemUpdated]);
+    }else {
+        //tu zapis pod konkretny id
+        //todo tylko problem z typowaniem 
+        const itemUpdated = { ...item, id: id}
+        setServiceData((prv) => 
+          prv.map((item) => item.id === id ? itemUpdated : item))
+    }
+    formView(1)
+    
+  };
 
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<AddressFormValues>({
+  } = useForm<formTypes>({
     resolver: zodResolver(addressSchema),
-    defaultValues: { city: "", street: "", serviceName: "" },
+    defaultValues: { city: obj.city, street: obj.street  , serviceName: obj.serviceName },
   });
 
-  const onSubmit = async (data: AddressFormValues) => {
-    // console.log("dane do zapisania", data);
-    const dataIdUpdated = {...data, id: crypto.randomUUID()}
-    // console.log("dane po dodaniu id", dataIdUpdated)
-    addServiceData(dataIdUpdated)    
+  const onSubmit = async (data: formTypes) => {
+    handleAddServiceData(data, obj.id)
   };
 
   return (

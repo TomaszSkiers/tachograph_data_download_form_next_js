@@ -60,13 +60,7 @@
   --ui-warning: #fbbf24;
 }
 
-input:-webkit-autofill,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:hover {
-  -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
-  -webkit-text-fill-color: white !important;
-  transition: background-color 5000s ease-in-out 0s;
-}
+
 
 
 /* 5. Style bazowe */
@@ -82,3 +76,26 @@ input:-webkit-autofill:hover {
 
 
 
+/* wyłączenie ringó i dziwnych zachowań w inputach */
+
+@layer base {
+  body {
+    @apply bg-ui-bg text-ui-text transition-colors duration-300 antialiased;
+  }
+  
+  /* Wyłączamy globalny ring przy focusie dla wszystkich elementów lub konkretnie dla inputów */
+  :focus-visible {
+    @apply outline-none ring-0 ring-offset-0;
+  }
+}
+
+/* Upewnij się też, że autofill nie wymusza swojego obramowania */
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px var(--ui-input) inset !important;
+  border: none !important; /* Usuwamy ramkę autofilla */
+}
+
+/* Firefox */
+input {
+  filter: none;
+}

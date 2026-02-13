@@ -7,9 +7,20 @@ import SetTechnicianData from "./setTechnicianData";
 import SetVehiclesData from "./setVehiclesData";
 import SetReasonDownloadData from "./setReasonDownloadData";
 import SetWorkshopData from "./setWorkshopData";
+import WorkshopList from "./workshopList";
+import { hookTypes } from "./schemas";
+
 
 export default function SettingsWrapper() {
   const [formView, setFormView] = useState(0);
+  const [obj, setObj] = useState<hookTypes>({
+    city: '',
+    street:'',
+    serviceName: '',
+    id: ''
+  })
+  
+  // console.log('objekt ze scraperka',obj)
 
   return (
     <div className="flex-2  mx-auto w-full max-w-5xl mt-6 mb-6 rounded-2xl flex  gap-3 ">
@@ -17,7 +28,7 @@ export default function SettingsWrapper() {
         {settingsPageButtons.map((button, index) => (
           <button
             key={index}
-            type="button" // Ważne!
+            type="button" 
             className={`${ghostButton} flex-col items-center gap-5 h-30 p-2 font-bold border        border-ui-border flex-1 min-h-35 ${formView === index + 1 ? "bg-ui-surface" : ""}`}
             onClick={() => setFormView(index + 1)}
           >
@@ -32,13 +43,28 @@ export default function SettingsWrapper() {
         ))}
       </div>
 
-      <div className="border border-ui-border flex-3 rounded-lg flex items-center justify-center">
+      <div
+        className="
+                    border 
+                    border-ui-border 
+                    flex-3 
+                    rounded-lg 
+                    flex 
+                    items-center 
+                    justify-center
+                    max-h-180
+                    overflow-auto
+                    "
+      >
         {formView === 0 && <DefaultSettingsScreen />}
-        {formView === 1 && <SetWorkshopData />}
+        {formView === 1 && <WorkshopList setFormView={setFormView} setObj={setObj}/>}
         {formView === 2 && <SetTechnicianData />}
         {formView === 3 && <SetVehiclesData />}
         {formView === 4 && <SetReasonDownloadData />}
+        {formView === 6 && <SetWorkshopData obj={obj} formView={setFormView}/>}
       </div>
     </div>
   );
 }
+
+
