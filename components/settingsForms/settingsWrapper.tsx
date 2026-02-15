@@ -22,6 +22,7 @@ export default function SettingsWrapper() {
   
   // console.log('objekt ze scraperka',obj)
 
+
   return (
     <div className="flex-2  mx-auto w-full max-w-5xl mt-6 mb-6 rounded-2xl flex  gap-3 ">
       <div className=" flex-1 flex flex-col gap-3">

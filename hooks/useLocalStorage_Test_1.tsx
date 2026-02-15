@@ -88,3 +88,7 @@ export function useLocalStorage<T>(
 
   return [storedValue, setValue] as const;
 }
+
+
+//todo trzeba jeszcze raz zbudować hooka do zapisu w local storage
+//todo albo poszukać gotowca npm

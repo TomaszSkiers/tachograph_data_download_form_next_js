@@ -1,6 +1,5 @@
 "use client";
 
-import { useLocalStorage } from "@/hooks/useLocalStorage_Test_1";
 import {
   primaryButton,
   successButton,
@@ -8,7 +7,7 @@ import {
 } from "@/styles/buttonsStyles";
 import { hookTypes, hookDataSchema } from "./schemas";
 import { Dispatch, SetStateAction, useState } from "react";
-
+import { useZodStorage } from "@/hooks/useLocalStorage_test_2";
 
 interface formView {
   setFormView: Dispatch<SetStateAction<number>>;
@@ -16,9 +15,8 @@ interface formView {
 }
 
 export default function WorkshopList({ setFormView, setObj }: formView) {
-  const [serviceData, setServiceData] = useLocalStorage<hookTypes[]>(
+  const [serviceData, setServiceData] = useZodStorage(
     "serviceData",
-    [],
     hookDataSchema,
   );
 
@@ -33,7 +31,7 @@ export default function WorkshopList({ setFormView, setObj }: formView) {
 
   const handleEdit = (obj: hookTypes) => {
     setObj(obj);
-    setFormView(6)
+    setFormView(6);
   };
 
   const handleAddWorkshop = () => {
@@ -44,7 +42,7 @@ export default function WorkshopList({ setFormView, setObj }: formView) {
       id: "",
     };
     setObj(empty);
-    setFormView(6)
+    setFormView(6);
   };
 
   return (
