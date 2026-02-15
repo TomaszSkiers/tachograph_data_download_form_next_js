@@ -23,7 +23,7 @@ const CharCounter = ({ inputRef, maxLength }: CharCounterProps) => {
     if (!el) return;
 
     const updateCount = () => setCount(el.value.length);
-    
+
     updateCount();
     el.addEventListener("input", updateCount);
     return () => el.removeEventListener("input", updateCount);
@@ -54,7 +54,7 @@ const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
 
     const hasMaxLength = typeof maxLength === "number";
 
- return (
+    return (
       <div className="w-full mb-4 flex flex-col gap-1.5">
         <div
           className={`
@@ -65,7 +65,7 @@ const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
             ${
               error
                 ? "border-ui-danger/50 shadow-[0_0_15px_rgba(220,38,38,0.1)]"
-                : "border-ui-border" 
+                : "border-ui-border"
             }
             ${
               disabled
@@ -86,7 +86,10 @@ const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
             </label>
 
             {hasMaxLength && (
-              <CharCounter inputRef={internalRef} maxLength={maxLength as number} />
+              <CharCounter
+                inputRef={internalRef}
+                maxLength={maxLength as number}
+              />
             )}
           </div>
 
@@ -108,8 +111,14 @@ const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
               text-md
             "
           />
+          {/* ... (error message) */}
+          {error && (
+            <p className="text-[12px] font-semibold text-ui-warning">
+              {error.message}
+            </p>
+          )}
         </div>
-        {/* ... (error message) */}
+        
       </div>
     );
   },

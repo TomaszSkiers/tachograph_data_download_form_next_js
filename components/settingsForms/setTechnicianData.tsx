@@ -1,9 +1,16 @@
 "use client";
 import { primaryButton } from "@/styles/buttonsStyles";
-import { serviceStorage } from "@/hooks/storage";
 import { useEffect, useState } from "react";
 import { useZodStorage } from "@/hooks/useLocalStorage_test_2";
-import { hookDataSchema, useServiceData } from "./schemas";
+import {
+  hookDataSchema,
+  RHF_TECHNICIAN_SCHEMA,
+  rhf_technician_schema,
+} from "./schemas";
+import FormInput from "../formComponents/FormInput";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { is } from "zod/locales";
 
 export default function SetTechnicianData() {
   const [serviceData, setServiceData] = useZodStorage(
@@ -11,26 +18,56 @@ export default function SetTechnicianData() {
     hookDataSchema,
   );
 
-  const handleData = () => {
-    localStorage.setItem("serviceData", "urwyjspane");
-    console.log("ognia");
+  // react hook form
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<rhf_technician_schema>({
+    resolver: zodResolver(RHF_TECHNICIAN_SCHEMA),
+    defaultValues: {
+      fullName: "",
+      technicianCardNumber: "",
+    },
+  });
+
+  //co mi potrzeba: typowanie
+
+  const onSubmit = (data: rhf_technician_schema) => {
+    console.log("dane formularza:", data);
   };
+  //? czy tu musi być async
 
   return (
-    <div className="h-full w-full flex flex-col items-center">
-      <h1>ustawiasz dane o technikach</h1>
-      <div className="h-40"></div>
-      <p>
-        aktualne dane <br />
-      </p>
-       <pre>{JSON.stringify(serviceData, null, 2)}</pre>
-      <div className="h-40"></div>
-      <button className={`${primaryButton} px-5 py-4`} onClick={handleData}>
-        zapisz do locala
-      </button>
+    <div className="h-full w-full flex flex-col">
+      <h1 className="p-5 text-2xl font-extrabold">Dane techników:</h1>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="p-3 flex-1 flex flex-col"
+      >
+        <FormInput
+          label="Imię i nazwisko"
+          maxLength={80}
+          placeholder="Jan Przykładowy"
+          error={errors.fullName}
+          {...register("fullName")}
+        />
+        <FormInput
+          label="Nr karty warsztatowej"
+          maxLength={16}
+          placeholder="PL00000000000013"
+          error={errors.technicianCardNumber}
+          {...register("technicianCardNumber")}
+        />
+        <div className="flex-1"></div>
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className={`${primaryButton} px-10 py-3 max-w-40 justify-center font-bold`}
+        >
+          zapisz
+        </button>
+      </form>
     </div>
   );
 }
-//todo  działa bo przy śmieciach mam nula i wykasowanie z pamięci uszkodzonej zmiennej
-//todo  tylko jak to później w komponencie ogarnąc
-//todo  najlepiej

@@ -123,7 +123,7 @@ export default function WorkshopList({ setFormView, setObj }: formView) {
       )}
       <div className="flex-1"></div>
       <button
-        className={`${successButton} max-w-40 px-4 py-2 justify-center font-bold`}
+        className={`${successButton} max-w-40 px-10 py-3 justify-center font-bold`}
         onClick={handleAddWorkshop}
       >
         dodaj warsztat

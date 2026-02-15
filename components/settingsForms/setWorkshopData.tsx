@@ -16,16 +16,11 @@ interface objProps {
 }
 
 export default function SetWorkshopData({ obj, formView }: objProps) {
-  const [serviceData, setServiceData] = useZodStorage(
-    "serviceData",
-    hookDataSchema,
-  );
+  const [, setServiceData] = useZodStorage("serviceData", hookDataSchema);
 
-  
-
-  useEffect(() => {
-    console.log("dane serwisu", serviceData);
-  }, [serviceData]);
+  // useEffect(() => {
+  //   console.log("dane serwisu", serviceData);
+  // }, [serviceData]);
 
   const handleAddServiceData = (item: formTypes, id: string) => {
     if (id === "") {
@@ -59,11 +54,11 @@ export default function SetWorkshopData({ obj, formView }: objProps) {
   };
 
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full flex flex-col">
       <h1 className="p-5 text-2xl font-extrabold">
         Ustawienia danych serwisu:
       </h1>
-      <form onSubmit={handleSubmit(onSubmit)} className=" p-3">
+      <form onSubmit={handleSubmit(onSubmit)} className="flex-1 p-3 flex flex-col" >
         <FormInput
           label="Nazwa serwisu"
           maxLength={100}
@@ -71,21 +66,22 @@ export default function SetWorkshopData({ obj, formView }: objProps) {
           {...register("serviceName")}
         />
         <FormInput
-          label="Miejscowość"
+          label="Kod i miejscowość"
           maxLength={80}
           error={errors.city}
           {...register("city")}
         />
         <FormInput
-          label="Ulica"
+          label="Ulica nr domu"
           maxLength={80}
           error={errors.street}
           {...register("street")}
         />
+        <div className="flex-1"></div>
         <button
           type="submit"
           disabled={isSubmitting}
-          className={`${primaryButton} px-5 py-3`}
+          className={`${primaryButton} px-10 py-3 max-w-40 justify-center font-bold`}
         >
           zapisz
         </button>
