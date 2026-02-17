@@ -1,21 +1,24 @@
 "use client";
 import { primaryButton } from "@/styles/buttonsStyles";
-import { useEffect, useState } from "react";
 import { useZodStorage } from "@/hooks/useLocalStorage_test_2";
 import {
-  hookDataSchema,
+  hookTechnicianSchema,
   RHF_TECHNICIAN_SCHEMA,
   rhf_technician_schema,
 } from "./schemas";
 import FormInput from "../formComponents/FormInput";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { is } from "zod/locales";
+import { Dispatch, SetStateAction } from "react";
 
-export default function SetTechnicianData() {
-  const [serviceData, setServiceData] = useZodStorage(
-    "serviceData",
-    hookDataSchema,
+interface props {
+  formView: Dispatch<SetStateAction<number>>
+}
+
+export default function SetTechnicianData({formView}: props) {
+  const [, setTechnicianData] = useZodStorage(
+    "technicianData",
+    hookTechnicianSchema,
   );
 
   // react hook form
@@ -31,12 +34,13 @@ export default function SetTechnicianData() {
     },
   });
 
-  //co mi potrzeba: typowanie
-
-  const onSubmit = (data: rhf_technician_schema) => {
+  const onSubmit = async (data: rhf_technician_schema) => {
     console.log("dane formularza:", data);
+    const technician = { ...data, id: crypto.randomUUID() };
+    console.log("technician:", technician);
+    setTechnicianData((p) => [...p, technician]);
+    formView(2)
   };
-  //? czy tu musi być async
 
   return (
     <div className="h-full w-full flex flex-col">

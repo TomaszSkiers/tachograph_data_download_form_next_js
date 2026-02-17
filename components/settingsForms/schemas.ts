@@ -56,8 +56,29 @@ export const RHF_TECHNICIAN_SCHEMA = z.object({
     .max(80, "max 80 znaków"),
   technicianCardNumber: z
     .string()
-    .min(16,'nr karty musi mieć min 16 znaków')
-    .max(16,'nr karty może mieć max 16 znaków')
+    .min(16, "nr karty musi mieć min 16 znaków")
+    .max(16, "nr karty może mieć max 16 znaków"),
 });
 
-export type rhf_technician_schema = z.infer<typeof RHF_TECHNICIAN_SCHEMA>
+export const HOOK_TECHNICIAN_SCHEMA = z.object({
+  id: z.string(),
+  fullName: z
+    .string()
+    .min(2, "Imię i nazwisko musi mieć minimum 2 znaki")
+    .max(80, "max 80 znaków"),
+  technicianCardNumber: z
+    .string()
+    .min(16, "nr karty musi mieć min 16 znaków")
+    .max(16, "nr karty może mieć max 16 znaków"),
+});
+
+export type rhf_technician_schema = z.infer<typeof RHF_TECHNICIAN_SCHEMA>;
+export const hookTechnicianSchema = z.array(HOOK_TECHNICIAN_SCHEMA);
+
+
+//? Explanation:
+
+//? For the technician form, I'm using RHF_TECHNICIAN_SCHEMA because it's only one object.
+//? This schema is used for validating data from the form, However, when I use the 
+//? setTechnicianData hook, this hook requires a table of objects with the fields: id, fullName and cardNumber,
+//? Therefore, it needs another schema to handle that structure.

@@ -2,11 +2,8 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import FormInput from "../formComponents/FormInput";
 import { useForm } from "react-hook-form";
-
 import { primaryButton } from "@/styles/buttonsStyles";
-
-import { Dispatch, SetStateAction, useEffect } from "react";
-
+import { Dispatch, SetStateAction } from "react";
 import { formTypes, addressSchema, hookDataSchema, hookTypes } from "./schemas";
 import { useZodStorage } from "@/hooks/useLocalStorage_test_2";
 
@@ -58,22 +55,28 @@ export default function SetWorkshopData({ obj, formView }: objProps) {
       <h1 className="p-5 text-2xl font-extrabold">
         Ustawienia danych serwisu:
       </h1>
-      <form onSubmit={handleSubmit(onSubmit)} className="flex-1 p-3 flex flex-col" >
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex-1 p-3 flex flex-col"
+      >
         <FormInput
           label="Nazwa serwisu"
           maxLength={100}
+          placeholder="TACHO - SERWIS Jan Przykładowy"
           error={errors.serviceName}
           {...register("serviceName")}
         />
         <FormInput
           label="Kod i miejscowość"
           maxLength={80}
+          placeholder="07-249 Maków"
           error={errors.city}
           {...register("city")}
         />
         <FormInput
           label="Ulica nr domu"
           maxLength={80}
+          placeholder="Tachograficzna 1 lok. 9"
           error={errors.street}
           {...register("street")}
         />

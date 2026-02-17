@@ -3,12 +3,13 @@ import { settingsPageButtons } from "@/app/pulpit/variables";
 import { ghostButton } from "@/styles/buttonsStyles";
 import { useState } from "react";
 import DefaultSettingsScreen from "./defaultSettingsScreen";
-import SetTechnicianData from "./setTechnicianData";
 import SetVehiclesData from "./setVehiclesData";
 import SetReasonDownloadData from "./setReasonDownloadData";
 import SetWorkshopData from "./setWorkshopData";
 import WorkshopList from "./workshopList";
 import { hookTypes } from "./schemas";
+import TechniciansList from "./technicianList";
+import SetTechnicianData from "./setTechnicianData";
 
 
 export default function SettingsWrapper() {
@@ -59,10 +60,11 @@ export default function SettingsWrapper() {
       >
         {formView === 0 && <DefaultSettingsScreen />}
         {formView === 1 && <WorkshopList setFormView={setFormView} setObj={setObj}/>}
-        {formView === 2 && <SetTechnicianData />}
+        {formView === 2 && <TechniciansList setFormView={(setFormView)}/>}
         {formView === 3 && <SetVehiclesData />}
         {formView === 4 && <SetReasonDownloadData />}
         {formView === 6 && <SetWorkshopData obj={obj} formView={setFormView}/>}
+        {formView === 7 && <SetTechnicianData formView={setFormView}/>}
       </div>
     </div>
   );

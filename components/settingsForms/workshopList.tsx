@@ -66,7 +66,6 @@ export default function WorkshopList({ setFormView, setObj }: formView) {
                         rounded-md
                         bg-ui-surface
                         flex
-                        
                     "
         >
           <div className="flex flex-col flex-1 overflow-auto">
@@ -96,6 +95,16 @@ export default function WorkshopList({ setFormView, setObj }: formView) {
           </div>
         </div>
       ))}
+      
+      <div className="flex-1"></div>
+      <button
+        className={`${successButton} max-w-40 px-10 py-3 justify-center font-bold`}
+        onClick={handleAddWorkshop}
+      >
+        dodaj warsztat
+      </button>
+
+      {/** modal window edit - delete */}
       {deleteId && (
         <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
           <div className="bg-ui-surface p-6 rounded-lg shadow-lg w-96">
@@ -121,13 +130,6 @@ export default function WorkshopList({ setFormView, setObj }: formView) {
           </div>
         </div>
       )}
-      <div className="flex-1"></div>
-      <button
-        className={`${successButton} max-w-40 px-10 py-3 justify-center font-bold`}
-        onClick={handleAddWorkshop}
-      >
-        dodaj warsztat
-      </button>
     </div>
   );
 }
