@@ -1,36 +1,41 @@
 "use client";
 
 import { useZodStorage } from "@/hooks/useLocalStorage_test_2";
-import { hookTechnicianSchema } from "./schemas";
+import {
+  HOOK_TECHNICIAN_SCHEMA,
+  hookTechnicianSchema,
+  props_technician_schema,
+} from "./schemas";
 import {
   primaryButton,
   successButton,
   warningButton,
 } from "@/styles/buttonsStyles";
 import { SetStateAction, useState, Dispatch } from "react";
+import { createEmptyFromSchema } from "@/functions/createEmptyFromSchema";
+// import { handleDeleteData } from "@/functions/confirmDelete";
+import { handleEditData } from "@/functions/handleEdit";
+import { handleCreateNew } from "@/functions/handleAddEmpty";
+import SettingsModalWindow from "./settingsModalWindow";
 
 interface props {
+  setObj: Dispatch<SetStateAction<props_technician_schema>>;
   setFormView: Dispatch<SetStateAction<number>>;
 }
 
-export default function TechniciansList({ setFormView }: props) {
-  const [technicians, setTechnicians] = useZodStorage(
+const SET_TECHNICIAN_DATA_FORM = 7;
+
+export default function TechniciansList({ setFormView, setObj }: props) {
+  const [technicians] = useZodStorage(
     "technicianData",
     hookTechnicianSchema,
   );
 
-  const [deletedId, setDeletedId] = useState<string | null>(null);
-
-  const confirmDelete = () => {
-    if (!deletedId) return;
-
-    setTechnicians((p) => p.filter((i) => i.id !== deletedId));
-    setDeletedId(null);
-  };
+  const [deletedId, setDeletedId] = useState<string | null>(null); //open/close modal window
+  const technicianNameForDelete = technicians.find((item) => item.id === deletedId)?.fullName
 
   return (
     <div className={`flex flex-col gap-2 w-full h-full p-3 `}>
-      test komponentu TechnicianList
       {technicians.map((technician) => (
         <div
           key={technician.id}
@@ -48,6 +53,14 @@ export default function TechniciansList({ setFormView }: props) {
           <div className="flex gap-6">
             <button
               className={`${primaryButton} px-5 py-3 min-w-30 justify-center items-center`}
+              onClick={() => {
+                handleEditData(
+                  technician,
+                  setObj,
+                  setFormView,
+                  SET_TECHNICIAN_DATA_FORM,
+                );
+              }}
             >
               edytuj
             </button>
@@ -64,40 +77,28 @@ export default function TechniciansList({ setFormView }: props) {
       {/** button add technician */}
       <button
         className={`${successButton} max-w-40 px-10 py-3 justify-center font-bold`}
-        onClick={()=> setFormView(7)}
+        onClick={() =>
+          handleCreateNew(
+            HOOK_TECHNICIAN_SCHEMA,
+            createEmptyFromSchema,
+            setObj,
+            setFormView,
+            SET_TECHNICIAN_DATA_FORM,
+          )
+        }
       >
-        
         dodaj
       </button>
       {/** modal window edit - delete */}
       {deletedId && (
-        <>
-          {/* background with blur */}
-          <div className="fixed inset-0 bg-black/40 backdrop-blur-[2px] z-40" />
-
-          {/* modal window without blur*/}
-          <div className="fixed inset-0 flex items-center justify-center z-50 pointer-events-none">
-            <div className="bg-ui-surface p-6 rounded-lg shadow-lg w-96 border border-ui-warning pointer-events-auto">
-              <h2 className="text-lg font-semibold mb-4">
-                Czy na pewno usunąć technika?
-              </h2>
-              <div className="flex justify-end gap-4">
-                <button
-                  className={`${primaryButton} px-4 py-1`}
-                  onClick={() => setDeletedId(null)}
-                >
-                  anuluj
-                </button>
-                <button
-                  className={`${warningButton} px-4 py-1`}
-                  onClick={confirmDelete}
-                >
-                  usuń
-                </button>
-              </div>
-            </div>
-          </div>
-        </>
+        <SettingsModalWindow
+          setDeletedId={setDeletedId}
+          header="Czy na pewno usunąć technika"
+          info={technicianNameForDelete}
+          deletedId={deletedId}
+          dataName="technicianData"
+          schema={hookTechnicianSchema}
+        />
       )}
     </div>
   );

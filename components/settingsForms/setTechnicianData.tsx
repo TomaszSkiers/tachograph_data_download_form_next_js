@@ -5,21 +5,26 @@ import {
   hookTechnicianSchema,
   RHF_TECHNICIAN_SCHEMA,
   rhf_technician_schema,
+  props_technician_schema,
 } from "./schemas";
 import FormInput from "../formComponents/FormInput";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Dispatch, SetStateAction } from "react";
+import { handleSaveData } from "@/functions/handleAddEditData";
 
 interface props {
-  formView: Dispatch<SetStateAction<number>>
+  obj: props_technician_schema;
+  formView: Dispatch<SetStateAction<number>>;
 }
 
-export default function SetTechnicianData({formView}: props) {
+export default function SetTechnicianData({ formView, obj }: props) {
   const [, setTechnicianData] = useZodStorage(
     "technicianData",
     hookTechnicianSchema,
   );
+
+  console.log("add technician", obj);
 
   // react hook form
   const {
@@ -29,17 +34,14 @@ export default function SetTechnicianData({formView}: props) {
   } = useForm<rhf_technician_schema>({
     resolver: zodResolver(RHF_TECHNICIAN_SCHEMA),
     defaultValues: {
-      fullName: "",
-      technicianCardNumber: "",
+      fullName: obj.fullName,
+      technicianCardNumber: obj.technicianCardNumber,
     },
   });
 
-  const onSubmit = async (data: rhf_technician_schema) => {
-    console.log("dane formularza:", data);
-    const technician = { ...data, id: crypto.randomUUID() };
-    console.log("technician:", technician);
-    setTechnicianData((p) => [...p, technician]);
-    formView(2)
+
+  const onSubmit = (data: rhf_technician_schema) => {
+    handleSaveData(data, obj.id, setTechnicianData, formView, 2 );
   };
 
   return (

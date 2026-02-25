@@ -7,21 +7,19 @@ import SetVehiclesData from "./setVehiclesData";
 import SetReasonDownloadData from "./setReasonDownloadData";
 import SetWorkshopData from "./setWorkshopData";
 import WorkshopList from "./workshopList";
-import { hookTypes } from "./schemas";
+import { HOOK_TECHNICIAN_SCHEMA, useServiceData } from "./schemas";
 import TechniciansList from "./technicianList";
 import SetTechnicianData from "./setTechnicianData";
+import { createEmptyFromSchema } from "@/functions/createEmptyFromSchema";
 
 
 export default function SettingsWrapper() {
   const [formView, setFormView] = useState(0);
-  const [obj, setObj] = useState<hookTypes>({
-    city: '',
-    street:'',
-    serviceName: '',
-    id: ''
-  })
-  
-  // console.log('objekt ze scraperka',obj)
+  const [workshopObj, setWorkshopObj] = useState(createEmptyFromSchema(useServiceData))
+  const [technicianObj, setTechnicianObj] = useState(createEmptyFromSchema(HOOK_TECHNICIAN_SCHEMA))
+
+  console.log('object technicianObj', technicianObj)
+  console.log('object workshopObj', workshopObj)
 
 
   return (
@@ -31,7 +29,7 @@ export default function SettingsWrapper() {
           <button
             key={index}
             type="button" 
-            className={`${ghostButton} flex-col items-center gap-5 h-30 p-2 font-bold border        border-ui-border flex-1 min-h-35 ${formView === index + 1 ? "bg-ui-surface" : ""}`}
+            className={`${ghostButton} flex-col items-center gap-5 h-30 p-2 font-bold border border-ui-border flex-1 min-h-35 ${formView === index + 1 ? "bg-ui-surface" : ""}`}
             onClick={() => setFormView(index + 1)}
           >
             <div className="flex flex-1 w-full items-center justify-start gap-5 text-left">
@@ -59,12 +57,12 @@ export default function SettingsWrapper() {
                     "
       >
         {formView === 0 && <DefaultSettingsScreen />}
-        {formView === 1 && <WorkshopList setFormView={setFormView} setObj={setObj}/>}
-        {formView === 2 && <TechniciansList setFormView={(setFormView)}/>}
+        {formView === 1 && <WorkshopList setFormView={setFormView} setObj={setWorkshopObj}/>}
+        {formView === 2 && <TechniciansList setFormView={setFormView} setObj={setTechnicianObj}/>}
         {formView === 3 && <SetVehiclesData />}
         {formView === 4 && <SetReasonDownloadData />}
-        {formView === 6 && <SetWorkshopData obj={obj} formView={setFormView}/>}
-        {formView === 7 && <SetTechnicianData formView={setFormView}/>}
+        {formView === 6 && <SetWorkshopData obj={workshopObj} formView={setFormView}/>}
+        {formView === 7 && <SetTechnicianData formView={setFormView} obj={technicianObj}/>}
       </div>
     </div>
   );

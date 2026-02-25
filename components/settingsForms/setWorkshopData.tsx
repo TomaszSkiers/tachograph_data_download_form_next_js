@@ -6,6 +6,7 @@ import { primaryButton } from "@/styles/buttonsStyles";
 import { Dispatch, SetStateAction } from "react";
 import { formTypes, addressSchema, hookDataSchema, hookTypes } from "./schemas";
 import { useZodStorage } from "@/hooks/useLocalStorage_test_2";
+import { handleSaveData } from "@/functions/handleAddEditData";
 
 interface objProps {
   obj: hookTypes;
@@ -19,19 +20,6 @@ export default function SetWorkshopData({ obj, formView }: objProps) {
   //   console.log("dane serwisu", serviceData);
   // }, [serviceData]);
 
-  const handleAddServiceData = (item: formTypes, id: string) => {
-    if (id === "") {
-      const itemUpdated = { ...item, id: crypto.randomUUID() };
-      console.log(itemUpdated);
-      setServiceData((prv) => [...prv, itemUpdated]);
-    } else {
-      const itemUpdated = { ...item, id: id };
-      setServiceData((prv) =>
-        prv.map((item) => (item.id === id ? itemUpdated : item)),
-      );
-    }
-    formView(1);
-  };
 
   const {
     register,
@@ -46,8 +34,8 @@ export default function SetWorkshopData({ obj, formView }: objProps) {
     },
   });
 
-  const onSubmit = async (data: formTypes) => {
-    handleAddServiceData(data, obj.id);
+  const onSubmit = (data: formTypes) => {
+    handleSaveData(data, obj.id, setServiceData, formView, 1);
   };
 
   return (

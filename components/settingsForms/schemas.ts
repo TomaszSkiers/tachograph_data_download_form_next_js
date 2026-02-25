@@ -73,6 +73,7 @@ export const HOOK_TECHNICIAN_SCHEMA = z.object({
 });
 
 export type rhf_technician_schema = z.infer<typeof RHF_TECHNICIAN_SCHEMA>;
+export type props_technician_schema = z.infer<typeof HOOK_TECHNICIAN_SCHEMA>;
 export const hookTechnicianSchema = z.array(HOOK_TECHNICIAN_SCHEMA);
 
 
