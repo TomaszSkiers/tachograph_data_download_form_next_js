@@ -16,7 +16,8 @@ import { createEmptyFromSchema } from "@/functions/createEmptyFromSchema";
 // import { handleDeleteData } from "@/functions/confirmDelete";
 import { handleEditData } from "@/functions/handleEdit";
 import { handleCreateNew } from "@/functions/handleAddEmpty";
-import SettingsModalWindow from "./settingsModalWindow";
+// import SettingsModalWindow from "./settingsModalWindow";
+import RadixSettingsModalWindow from "./radixSettingsModalWindow";
 
 interface props {
   setObj: Dispatch<SetStateAction<props_technician_schema>>;
@@ -26,13 +27,12 @@ interface props {
 const SET_TECHNICIAN_DATA_FORM = 7;
 
 export default function TechniciansList({ setFormView, setObj }: props) {
-  const [technicians] = useZodStorage(
-    "technicianData",
-    hookTechnicianSchema,
-  );
+  const [technicians] = useZodStorage("technicianData", hookTechnicianSchema);
 
   const [deletedId, setDeletedId] = useState<string | null>(null); //open/close modal window
-  const technicianNameForDelete = technicians.find((item) => item.id === deletedId)?.fullName
+  const technicianNameForDelete = technicians.find(
+    (item) => item.id === deletedId,
+  )?.fullName;
 
   return (
     <div className={`flex flex-col gap-2 w-full h-full p-3 `}>
@@ -90,7 +90,7 @@ export default function TechniciansList({ setFormView, setObj }: props) {
         dodaj
       </button>
       {/** modal window edit - delete */}
-      {deletedId && (
+      {/* {deletedId && (
         <SettingsModalWindow
           setDeletedId={setDeletedId}
           header="Czy na pewno usunąć technika"
@@ -99,7 +99,16 @@ export default function TechniciansList({ setFormView, setObj }: props) {
           dataName="technicianData"
           schema={hookTechnicianSchema}
         />
-      )}
+      )} */}
+      {/* W Twoim TechniciansList */}
+      <RadixSettingsModalWindow
+        selectedId={deletedId}
+        onClose={() => setDeletedId(null)} 
+        header="Czy na pewno usunąć technika"
+        dataName="technicianData"
+        info={technicianNameForDelete}
+        schema={hookTechnicianSchema}
+      />
     </div>
   );
 }
